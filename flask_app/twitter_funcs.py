@@ -50,9 +50,9 @@ def get_user_features(screen_name):
         # manufactured features
         hour_created = int(user.created_at.strftime('%H'))
         network = np.round(np.log(1 + friends_count)
-                           / np.log(1 + followers_count), 3)
+                           * np.log(1 + followers_count), 3)
         tweet_to_followers = np.round(
-            np.log(1 + statuses_count) / np.log(1 + followers_count), 3)
+            np.log(1 + statuses_count) * np.log(1 + followers_count), 3)
         follower_acq_rate = np.round(
             np.log(1 + (followers_count / account_age_days)), 3)
         friends_acq_rate = np.round(
