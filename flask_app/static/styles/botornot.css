@@ -1,0 +1,65 @@
+/* CSS Styling for Bot or Not Flask app */
+@import "bulma.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+}
+
+/*
+* Centering the body content
+*/
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+}
+h2 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+}
+h3 {
+  font-size: 2em;
+  font-weight: 500;
+  margin-top: 30px;
+  text-align: center;
+  color: #999;
+}
+p {
+  font-size: 1.6em;
+  font-weight: 300;
+  margin-top: 30px;
+  text-align: center;
+  color: #999;
+}
+p.prediction-text {
+  font-weight: 900;
+}
+form {
+  font-size: 1.4em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  color: #999;
+}
+label {
+  font-size: 1.4em;
+  font-weight: 200;
+  margin-top: 30px;
+  text-align: center;
+  color: #999;
+}
+input {
+  font-size: 1.2em;
+  font-weight: 80;
+  margin-top: 6px;
+  text-align: center;
+  color: #999;
+}

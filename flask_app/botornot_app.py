@@ -4,6 +4,21 @@ from twitter_funcs import bot_proba, bot_or_not, get_user_features
 app = flask.Flask(__name__)
 
 
+def bot_likelihood(prob):
+    if prob < 20:
+        return '<span class="has-text-link">Not a bot</span>'
+    elif prob < 35:
+        return '<span class="has-text-info">Very likely not a bot</span>'
+    elif prob < 50:
+        return '<span class="has-text-grey-dark">Probabily not a bot</span>'
+    elif prob < 65:
+        return '<span class="has-text-grey-dark">Probably a bot</span>'
+    elif prob < 80:
+        return '<span class="has-text-warning">Very likely a bot</span>'
+    else:
+        return '<span class="has-text-danger">Bot</span>'
+
+
 @app.route('/')
 def homepage():
     return flask.render_template('index.html')
@@ -20,8 +35,8 @@ def make_prediction():
         prediction = [f'User @{handle} not found', '']
 
     else:
-        prediction = [bot_or_not(
-            handle), f'Probability of being a bot: {bot_proba(handle)}%']
+        prediction = [bot_likelihood(bot_proba(handle)),
+                      f'Probability of being a bot: {bot_proba(handle)}%']
 
     return flask.render_template('index.html', prediction=prediction[0], probability=prediction[1], user_lookup_message=user_lookup_message)
 
