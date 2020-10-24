@@ -49,8 +49,8 @@ def get_user_features(screen_name):
 
         # manufactured features
         hour_created = int(user.created_at.strftime('%H'))
-        popularity = np.round(np.log(1 + friends_count)
-                              * np.log(1 + followers_count), 3)
+        network = np.round(np.log(1 + friends_count)
+                           / np.log(1 + followers_count), 3)
         tweet_to_followers = np.round(
             np.log(1 + statuses_count) / np.log(1 + followers_count), 3)
         follower_acq_rate = np.round(
@@ -61,7 +61,7 @@ def get_user_features(screen_name):
         # organizing list to be returned
         account_features = [verified, hour_created, geo_enabled, default_profile, default_profile_image,
                             favourites_count, followers_count, friends_count, statuses_count,
-                            average_tweets_per_day, popularity, tweet_to_followers, follower_acq_rate,
+                            average_tweets_per_day, network, tweet_to_followers, follower_acq_rate,
                             friends_acq_rate]
 
     except:
@@ -85,7 +85,7 @@ def bot_or_not(twitter_handle):
         # features for model
         features = ['verified', 'hour_created', 'geo_enabled', 'default_profile', 'default_profile_image',
                     'favourites_count', 'followers_count', 'friends_count', 'statuses_count', 'average_tweets_per_day',
-                    'popularity', 'tweet_to_followers', 'follower_acq_rate', 'friends_acq_rate']
+                    'network', 'tweet_to_followers', 'follower_acq_rate', 'friends_acq_rate']
 
         # creates df for model.predict() format
         user_df = pd.DataFrame(np.matrix(user_features), columns=features)

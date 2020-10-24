@@ -25,8 +25,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import (accuracy_score, classification_report, confusion_matrix, f1_score,
                              plot_confusion_matrix, precision_score, recall_score, roc_auc_score, roc_curve, auc)
 
-from visualize import plot_cm
-
 
 def multi_model_eval(model_list, X, y, kf): 
     ''' 
