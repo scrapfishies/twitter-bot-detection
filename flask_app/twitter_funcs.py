@@ -9,19 +9,13 @@ from datetime import datetime
 import re
 import time
 
+from secrets import twitter_keys
+
 # Get fully-trained XGBoostClassifier model
 with open('model.pickle','rb') as read_file:
     xgb_model = pickle.load(read_file)
 
 # Set up connection to Twitter API
-twitter_keys = {
-        'consumer_key':        '---INSERT KEYS---',
-        'consumer_secret':     '---INSERT KEYS---',
-        'access_token_key':    '---INSERT KEYS---',
-        'access_token_secret': '---INSERT KEYS---'
-    }
-
-#Setup access to API
 auth = tweepy.OAuthHandler(twitter_keys['consumer_key'], twitter_keys['consumer_secret'])
 auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
 
@@ -39,13 +33,9 @@ def get_user_features(screen_name):
         user = api.get_user(screen_name)
         
         # account features to return for predicton
-        #handle = user.screen_name
-        #created_at = user.created_at.strftime('%Y-%m-%d %H:%M:%S')
         account_age_days = (datetime.now() - user.created_at).days       
         verified = user.verified
         geo_enabled = user.geo_enabled
-        #lang = user.lang
-        #location = user.location
         default_profile = user.default_profile
         default_profile_image = user.default_profile_image
         favourites_count = user.favourites_count
@@ -67,11 +57,10 @@ def get_user_features(screen_name):
                            average_tweets_per_day, popularity, tweet_to_followers, follower_acq_rate, 
                            friends_acq_rate]
         
-    except BaseException as e:
-          print('failed on_status,',str(e))
-          time.sleep(3)
+    except: 
+          return 'User not found'
     
-    return account_features
+    return account_features if len(account_features)==14 else f'User not found'
 
 
 def bot_or_not(twitter_handle):
@@ -80,17 +69,23 @@ def bot_or_not(twitter_handle):
     Required: trained classification model (XGBoost) and user account-level info as features
     '''
     
-    # features for model
-    features = ['verified', 'hour_created', 'geo_enabled', 'default_profile', 'default_profile_image', 
-            'favourites_count', 'followers_count', 'friends_count', 'statuses_count', 'average_tweets_per_day',
-            'popularity', 'tweet_to_followers', 'follower_acq_rate', 'friends_acq_rate']
-    
-    # creates df for model.predict() format
-    user_df = pd.DataFrame(np.matrix(get_user_features(twitter_handle)), columns=features)
-    
-    prediction = xgb_model.predict(user_df)[0]
-    
-    return "Bot" if prediction == 1 else "Not a bot"
+    user_features = get_user_features(twitter_handle)
+
+    if user_features == 'User not found':
+        return 'User not found'
+
+    else: 
+        # features for model
+        features = ['verified', 'hour_created', 'geo_enabled', 'default_profile', 'default_profile_image', 
+                'favourites_count', 'followers_count', 'friends_count', 'statuses_count', 'average_tweets_per_day',
+                'popularity', 'tweet_to_followers', 'follower_acq_rate', 'friends_acq_rate']
+        
+        # creates df for model.predict() format
+        user_df = pd.DataFrame(np.matrix(user_features), columns=features)
+        
+        prediction = xgb_model.predict(user_df)[0]
+        
+        return "Bot" if prediction == 1 else "Not a bot"
 
 
 def bot_proba(twitter_handle):
@@ -98,20 +93,12 @@ def bot_proba(twitter_handle):
     Takes in a twitter handle and provides probabily of whether or not the user is a bot
     Required: trained classification model (XGBoost) and user account-level info from get_user_features
     '''
-    user = np.matrix(get_user_features(twitter_handle))
-    
-    proba = xgb_model.predict_proba(user)[:,1][0]
-    
-    print(f'Probability of being a bot: {proba*100:.2f}%')
-    
-    return proba
+    user_features = get_user_features(twitter_handle)
 
-
-def bot_or_not_with_proba(twitter_handle):
-    '''
-    Returns labeled prediction ('Bot' or 'Not a bot') with % probability
-    '''
-    print(bot_or_not(twitter_handle))
-    print(bot_proba(twitter_handle))
-
+    if user_features == 'User not found':
+        return 'User not found'    
+    else:
+        user = np.matrix(user_features)  
+        proba = np.round(xgb_model.predict_proba(user)[:,1][0]*100, 2)
+        return proba
 

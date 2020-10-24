@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+      <title>Twitter Bot or Not</title>
+  </head>
+  
+  <body>
+    <h1>Twitter Bot or Not</h1>
+
+    <div>
+    <form method = 'POST' action='/'>
+      <label>Enter Twitter handle:</label><br>
+      <input type='text' name='handle' id='handle'><br>
+      <input type='submit' value='Submit' method='get'>
+    </form>
+    </div>
+
+    <div>
+    <h3>{{user_lookup_message}}</h4>  
+    <p>{{prediction}}</p>
+    <p>{{probability}}</p>
+    </div>
+
+  </body>
+
+</html>
