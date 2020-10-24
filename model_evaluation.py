@@ -79,7 +79,7 @@ def roc_curve_cv(model, X, y, kf, model_alias):
     ''' 
 
     # sets up the figure
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(6, 6), dpi=100)
 
     # sets up the X, y for KFolds
     X_kf, y_kf = np.array(X), np.array(y)
@@ -117,10 +117,11 @@ def roc_curve_cv(model, X, y, kf, model_alias):
     plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='grey', label='Chance Line', alpha=.8)
     plt.xlim([-0.01, 1.01])
     plt.ylim([-0.01, 1.01])
-    plt.xlabel('False Positive Rate',fontsize=14)
-    plt.ylabel('True Positive Rate',fontsize=14)
-    plt.title(f'Cross-Validation ROC of {model_alias}',fontsize=16)
-    plt.legend(loc="lower right", prop={'size': 14})
+    plt.xlabel('False Positive Rate',fontsize=12)
+    plt.ylabel('True Positive Rate',fontsize=12)
+    plt.title(f'Cross-Validation ROC of {model_alias}',fontsize=14)
+    plt.legend(loc="lower right", prop={'size': 10}, frameon=False)
+    sns.despine(bottom = True, left = True)
     plt.show()
 
 
@@ -185,9 +186,9 @@ def plot_cm(cm,
     if cmap is None:
         cmap = plt.get_cmap('Blues')
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(6, 6), dpi=100)
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title)
+    plt.title(title, fontsize=12)
     plt.colorbar()
 
     if target_names is not None:
@@ -197,7 +198,6 @@ def plot_cm(cm,
 
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-
 
     thresh = cm.max() / 1.5 if normalize else cm.max() / 2
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
@@ -212,9 +212,9 @@ def plot_cm(cm,
 
 
     plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass))
-    plt.show()
+    plt.ylabel('True label', fontsize=10)
+    plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass), fontsize=10)
+    plt.show();
     
 
 def plot_feature_importance(model, features):
@@ -229,10 +229,11 @@ def plot_feature_importance(model, features):
     imp = [i[1] for i in feature_importance]
 
     # Plot feature importance
-    plt.figure(figsize=(10, 6))
-    plt.title('Feature Importance: XGBoost Model', fontsize=16)
+    plt.figure(figsize=(8, 6), dpi=100)
+    plt.title('Feature Importance: XGBoost Model', fontsize=12)
     plt.barh(feat, imp)
-    plt.xlabel('Feature Score', fontsize=12)
+    plt.xlabel('Feature Score', fontsize=10)
+    sns.despine(bottom = True, left = True)
     plt.show();
 
 

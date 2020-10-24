@@ -8,13 +8,13 @@ def bot_likelihood(prob):
     if prob < 20:
         return '<span class="has-text-link">Not a bot</span>'
     elif prob < 35:
-        return '<span class="has-text-info">Very likely not a bot</span>'
+        return '<span class="has-text-info">Likely not a bot</span>'
     elif prob < 50:
-        return '<span class="has-text-grey-dark">Probabily not a bot</span>'
+        return '<span class="has-text-grey-dark">Probably not a bot</span>'
     elif prob < 65:
-        return '<span class="has-text-grey-dark">Probably a bot</span>'
+        return '<span class="has-text-grey-dark">Maybe a bot</span>'
     elif prob < 80:
-        return '<span class="has-text-warning">Very likely a bot</span>'
+        return '<span class="has-text-warning">Likely a bot</span>'
     else:
         return '<span class="has-text-danger">Bot</span>'
 
