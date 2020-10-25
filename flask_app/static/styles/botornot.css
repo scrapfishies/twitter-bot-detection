@@ -7,7 +7,6 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #444;
 }
-
 /*
 * Centering the body content
 */
@@ -20,11 +19,6 @@ h1 {
   margin-top: 40px;
   text-align: center;
   color: #3298dc;
-}
-h2 {
-  font-size: 3em;
-  margin-top: 40px;
-  text-align: center;
 }
 h3 {
   font-size: 2em;
