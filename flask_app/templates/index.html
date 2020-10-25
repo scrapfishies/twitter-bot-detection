@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang='en'>
+  
   <head>
       <meta charset='utf-8'>
       <title>Twitter Bot or Not</title>
@@ -8,53 +9,48 @@
       <link rel="stylesheet" type = 'text/css' href="{{ url_for('static', filename='styles/botornot.css') }}">
   </head>
   
+
   <body>
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-
           <div class="columns is-centered">
             <div class="column is-one-third has-text-centered">
-              
               <span class="icon is-large">
                 <span class="fa-stack fa-lg">
-                  <i class="fas fa-robot fa-stack-1x"></i>
+                  <i class="fas fa-robot fa-stack-1x" style="color: #3298dc"></i>
                   <i class="fas fa-ban fa-stack-2x has-text-danger"></i>
                 </span>
-              </span>
-              
-              <h1 class="title">Twitter Bot or Not</h1>
-
+              </span> 
+              <h1 class="title" style="color: #3298dc">Twitter Bot or Not</h1>
               <div class='make-prediction'>
               <form class="form" method = 'POST' action='/'>
-                
                 <div class="control">
-                  
                   <div class="field">
-                    <input class="input" type='text' name='handle' id='handle' placeholder="Enter a Twitter handle"><br>
+                    <input class="input is-info is-rounded" type='text' name='handle' id='handle' placeholder="Enter a Twitter handle"><br>
                   </div>
                 </div>
-                
-                <input class="button is-link is-outlined" type='submit' value='Submit' method='get'>
+                <input class="button is-info is-rounded" type='submit' value='Submit' method='get'>
               </form>
               </div>
-
             </div>
-
           </div>
-      
           <div class='prediction-results'>
             <h3>{{user_lookup_message}}</h3>  
             <p class="prediction-text" style="font-weight: 900">{{prediction | safe}}</p>
             <p>{{probability}}</p>
           </div>  
-
         </div>
-
       </div>
-
     </section>
-
   </body>
+
+  <footer>
+    <p style="font-size: 1em"><a href="https://github.com/scrapfishies/twitter-bot-detection">Twitter Bot or Not</a> by Chris Doenlen | 
+      <a href="https://github.com/scrapfishies/"><i class="fab fa-github fa-lg"></i></a> 
+      <a href="https://twitter.com/scrapfishies"><i class="fab fa-twitter fa-lg"></i></a> 
+      <a href="hhttps://medium.com/@scrapfishies"><i class="fab fa-medium fa-lg"></i></a> 
+      <a href="https://www.linkedin.com/in/chrisdoenlen/"><i class="fab fa-linkedin fa-lg"></i></a> 
+  </footer>
 
 </html>
