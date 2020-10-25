@@ -30,15 +30,15 @@
                     <input class="input is-info is-rounded" type='text' name='handle' id='handle' placeholder="Enter a Twitter handle"><br>
                   </div>
                 </div>
-                <input class="button is-info is-rounded" type='submit' value='Submit' method='get'>
+                <input class="button is-info is-rounded" style="font-weight:bold;" type='submit' value='Submit' method='get'>
               </form>
               </div>
             </div>
           </div>
           <div class='prediction-results'>
-            <h3>{{user_lookup_message}}</h3>  
-            <p class="prediction-text" style="font-weight: 900">{{prediction | safe}}</p>
-            <p>{{probability}}</p>
+            <p style="font-weight: 900">{{user_lookup_message}}</p>  
+            <h3>{{prediction | safe}}</h3>
+            <p style="font-weight: 350">{{probability}}</p>
           </div>  
         </div>
       </div>
