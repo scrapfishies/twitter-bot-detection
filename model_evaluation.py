@@ -79,7 +79,7 @@ def roc_curve_cv(model, X, y, kf, model_alias):
     ''' 
 
     # sets up the figure
-    plt.figure(figsize=(6, 6), dpi=100)
+    plt.figure(figsize=(4, 4), dpi=100)
 
     # sets up the X, y for KFolds
     X_kf, y_kf = np.array(X), np.array(y)
@@ -117,11 +117,11 @@ def roc_curve_cv(model, X, y, kf, model_alias):
     plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='grey', label='Chance Line', alpha=.8)
     plt.xlim([-0.01, 1.01])
     plt.ylim([-0.01, 1.01])
-    plt.xlabel('False Positive Rate',fontsize=12)
-    plt.ylabel('True Positive Rate',fontsize=12)
-    plt.title(f'Cross-Validation ROC of {model_alias}',fontsize=14)
-    plt.legend(loc="lower right", prop={'size': 10}, frameon=False)
-    sns.despine(bottom = True, left = True)
+    plt.xlabel('False Positive Rate',fontsize=10)
+    plt.ylabel('True Positive Rate',fontsize=10)
+    plt.title(f'Cross-Validation ROC of {model_alias}',fontsize=11)
+    plt.legend(loc="lower right", prop={'size': 9}, frameon=False)
+    sns.despine()
     plt.show()
 
 
@@ -188,7 +188,7 @@ def plot_cm(cm,
 
     plt.figure(figsize=(6, 6), dpi=100)
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title, fontsize=12)
+    plt.title(title, fontsize=10)
     plt.colorbar()
 
     if target_names is not None:
@@ -229,11 +229,11 @@ def plot_feature_importance(model, features):
     imp = [i[1] for i in feature_importance]
 
     # Plot feature importance
-    plt.figure(figsize=(8, 6), dpi=100)
-    plt.title('Feature Importance: XGBoost Model', fontsize=12)
+    plt.figure(figsize=(7, 5), dpi=100)
+    plt.title('Feature Importance: XGBoost Model', fontsize=11)
     plt.barh(feat, imp)
-    plt.xlabel('Feature Score', fontsize=10)
-    sns.despine(bottom = True, left = True)
+    plt.xlabel('Feature Score', fontsize=9)
+    sns.despine()
     plt.show();
 
 
