@@ -10,9 +10,9 @@ def bot_likelihood(prob):
     elif prob < 35:
         return '<span class="has-text-info">Likely not a bot</span>'
     elif prob < 50:
-        return '<span class="has-text-info-dark">Probably not a bot</span>'
+        return '<span class="has-text-info">Probably not a bot</span>'
     elif prob < 60:
-        return '<span class="has-text-info-dark">Maybe a bot</span>'
+        return '<span class="has-text-warning">Maybe a bot</span>'
     elif prob < 80:
         return '<span class="has-text-warning">Likely a bot</span>'
     else:
@@ -24,7 +24,7 @@ def homepage():
     return flask.render_template('index.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/predict', methods=['GET', 'POST'])
 def make_prediction():
     handle = flask.request.form['handle']
 

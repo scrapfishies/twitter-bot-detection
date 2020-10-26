@@ -18,13 +18,15 @@
             <div class="column is-one-third has-text-centered">
               <span class="icon is-large">
                 <span class="fa-stack fa-lg">
-                  <i class="fas fa-robot fa-stack-1x" style="color: #3298dc"></i>
-                  <i class="fas fa-ban fa-stack-2x has-text-danger"></i>
+                  <a href="/">
+                    <i class="fas fa-robot fa-stack-1x" style="color: #3298dc"></i>
+                    <i class="fas fa-ban fa-stack-2x has-text-danger"></i>
+                  </a>
                 </span>
               </span> 
               <h1 class="title" style="color: #3298dc">Twitter Bot or Not</h1>
               <div class='make-prediction'>
-              <form class="form" method = 'POST' action='/'>
+              <form class="form" method = 'POST' action='/predict'>
                 <div class="control">
                   <div class="field">
                     <input class="input is-info is-rounded" type='text' name='handle' id='handle' placeholder="Enter a Twitter handle"><br>
