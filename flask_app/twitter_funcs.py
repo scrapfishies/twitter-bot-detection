@@ -10,7 +10,6 @@ from datetime import datetime
 import re
 import time
 
-#from secrets import twitter_keys
 
 twitter_keys = {
     'consumer_key': os.environ.get('consumer_key', None),

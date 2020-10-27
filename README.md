@@ -15,7 +15,16 @@
 - HTML/CSS, [Bulma](https://bulma.io/)
 - [Heroku](https://www.heroku.com/)
 
+---
+
 #### Sources & References
+
+**Datasets**
 
 - [Kaggle: Twitter Bot Accounts](https://www.kaggle.com/davidmartngutirrez/twitter-bots-accounts)
 - [Bot Repository](https://botometer.osome.iu.edu/bot-repository/index.html)
+
+**Heroku Deployment Tutorials**
+
+- [Deploying a flask app to Heroku](https://stackabuse.com/deploying-a-flask-application-to-heroku/)
+- [Flask Heroku Example](https://github.com/MirelaI/flask_heroku_example)
