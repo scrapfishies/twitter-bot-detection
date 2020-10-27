@@ -23,7 +23,8 @@ from matplotlib.colors import ListedColormap
 from sklearn.model_selection import KFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import (accuracy_score, classification_report, confusion_matrix, f1_score,
-                             plot_confusion_matrix, precision_score, recall_score, roc_auc_score, roc_curve, auc)
+                             plot_confusion_matrix, precision_score, recall_score, roc_auc_score, roc_curve, auc,
+                             precision_recall_curve)
 
 
 def multi_model_eval(model_list, X, y, kf): 
@@ -79,7 +80,7 @@ def roc_curve_cv(model, X, y, kf, model_alias):
     ''' 
 
     # sets up the figure
-    plt.figure(figsize=(4, 4), dpi=100)
+    plt.figure(figsize=(6, 6), dpi=100)
 
     # sets up the X, y for KFolds
     X_kf, y_kf = np.array(X), np.array(y)
@@ -125,6 +126,70 @@ def roc_curve_cv(model, X, y, kf, model_alias):
     plt.show()
 
 
+def precision_recall_cv(model, X, y, kf, model_alias): 
+    '''
+    Plots Precision-Recall Curves for each fold in KFold cross-validation
+    for a provided model. 
+    Inputs: * Classification Model
+            * X, y training data
+            * KFold parameters
+            * Model Alias (for plot)        
+    ''' 
+
+    # sets up the figure
+    plt.figure(figsize=(6, 6), dpi=100)
+
+    # sets up the X, y for KFolds
+    X_kf, y_kf = np.array(X), np.array(y)
+
+    # to return mean and std of CV AUC's
+    prec_scores, recall_scores = [], []
+
+    # to track the CV rounds
+    round = 1
+
+    for train_ind, val_ind in kf.split(X, y):
+
+        # Data split
+        X_train, y_train = X_kf[train_ind], y_kf[train_ind]
+        X_val, y_val = X_kf[val_ind], y_kf[val_ind]
+
+        # Fit model and make predictions
+        model.fit(X_train, y_train)
+        pred = model.predict(X_val)
+        proba = model.predict_proba(X_val)[:,1]
+
+        # Precicion/Recall curve calculations and plotting
+        model_precision, model_recall, _ = precision_recall_curve(y_val, proba)
+        
+        prec_score = precision_score(y_val, pred)
+        rec_score = recall_score(y_val, pred)
+        
+        prec_scores.append(prec_score)
+        recall_scores.append(rec_score)
+
+        plt.plot(model_recall, model_precision, marker=',', alpha=0.2, 
+                 label=f'Fold {round}: Precision: {prec_score:.2f} / Recall: {rec_score:.2f}')
+
+        round += 1
+
+    # Final output
+    print(f'Average Precision Score: {np.mean(prec_scores):.4f} +- {np.std(prec_scores):4f}')
+    print(f'Average Recall Score: {np.mean(recall_scores):.4f} +- {np.std(recall_scores):4f}')
+
+    # Plot formatting
+    no_skill = len(y_val[y_val==1]) / len(y_val)
+    plt.plot([0, 1], [no_skill, no_skill], linestyle='--', label='No Skill')
+    plt.xlim([-0.01, 1.01])
+    plt.ylim([-0.01, 1.01])
+    plt.xlabel('Recall',fontsize=10)
+    plt.ylabel('Precision',fontsize=10)
+    plt.title(f'Cross-Validated Precision-Recall Curves: {model_alias}',fontsize=11)
+    plt.legend(loc="best", prop={'size': 9}, frameon=False)
+    sns.despine()
+    plt.show()
+    
+    
 def metrics_report(predicted_values, actual_values): 
 
     conf_matrix = confusion_matrix(predicted_values, actual_values)
