@@ -1,4 +1,5 @@
 # Imports
+import os
 import numpy as np
 import pandas as pd
 
@@ -9,7 +10,14 @@ from datetime import datetime
 import re
 import time
 
-from secrets import twitter_keys
+#from secrets import twitter_keys
+
+twitter_keys = {
+    'consumer_key': os.environ.get('consumer_key', None),
+    'consumer_secret': os.environ.get('consumer_secret', None),
+    'access_token_key': os.environ.get('access_token_key', None),
+    'access_token_secret': os.environ.get('access_token_secret', None)
+}
 
 # Get fully-trained XGBoostClassifier model
 with open('model.pickle', 'rb') as read_file:
