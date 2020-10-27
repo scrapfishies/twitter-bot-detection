@@ -282,7 +282,7 @@ def plot_cm(cm,
     plt.show();
     
 
-def plot_feature_importance(model, features):
+def plot_feature_importance(model, features, model_alias):
     
     importance = model.feature_importances_
     feature_importance = list(zip(features, importance))
@@ -295,7 +295,7 @@ def plot_feature_importance(model, features):
 
     # Plot feature importance
     plt.figure(figsize=(7, 5), dpi=100)
-    plt.title('Feature Importance: XGBoost Model', fontsize=11)
+    plt.title(f'Feature Importance: {model_alias}', fontsize=11)
     plt.barh(feat, imp)
     plt.xlabel('Feature Score', fontsize=9)
     sns.despine()
