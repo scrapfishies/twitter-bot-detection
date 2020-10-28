@@ -296,7 +296,7 @@ def plot_feature_importance(model, features, model_alias):
     # Plot feature importance
     plt.figure(figsize=(7, 5), dpi=100)
     plt.title(f'Feature Importance: {model_alias}', fontsize=11)
-    plt.barh(feat, imp)
+    plt.barh(feat, imp, color='#3298dc')
     plt.xlabel('Feature Score', fontsize=9)
     sns.despine()
     plt.show();
