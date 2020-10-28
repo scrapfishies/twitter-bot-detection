@@ -43,7 +43,7 @@ After fitting the model on the full training set, I created a web application wi
 
 Please check it out for yourself! --> [Twitter Bot or Not](https://twitter-bot-or-not.herokuapp.com/)
 
-You can also view my [presentation slides](https://github.com/scrapfishies/twitter-bot-detection/blob/main/bot-or-not_deck.pdf) for the project.
+You can also view my [presentation slides](https://github.com/scrapfishies/twitter-bot-detection/blob/main/presentation_deck.pdf) for the project.
 
 ### Suggestions for future work
 
@@ -53,10 +53,11 @@ You can also view my [presentation slides](https://github.com/scrapfishies/twitt
 
 ---
 
-#### Tools, libraries, & technologies used
+#### Tools, libraries, & technologies
 
 - Python, Jupyter Notebooks
 - [Matplotlib](https://matplotlib.org/) and [Seaborn](https://seaborn.pydata.org/)
+- [PostgreSQL](https://www.postgresql.org/)
 - [Scikit-learn](https://scikit-learn.org/)
 - [XGBoost](https://xgboost.readthedocs.io/en/latest/#)
 - [Twitter API](https://developer.twitter.com/en) and [Tweepy](https://www.tweepy.org/)
@@ -64,7 +65,7 @@ You can also view my [presentation slides](https://github.com/scrapfishies/twitt
 - HTML/CSS, [Bulma](https://bulma.io/)
 - [Heroku](https://www.heroku.com/)
 
-#### Sources & References
+#### Sources & references
 
 **Datasets**
 
