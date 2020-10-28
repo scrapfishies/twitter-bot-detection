@@ -1,8 +1,26 @@
 # Twitter Bot or Not
 
-## Using supervised machine learning to detect Twitter bots
+## Twitter bot detection with supervised machine learning
 
-:construction: UNDER CONSTRUCTION :construction:
+Whether you're on Twitter or stay away from social media altogether, these platforms affect all of us by shaping public discourse and spreading information.
+
+The existence of bots on these platforms has gained a lot of attention in recent years, and yet many people are unaware of or misunderstand their presence and purpose. And so it's important that we start with a simple working definition of a bot:
+
+> A **Twitter bot is** a **software** bot that controls a Twitter account via the Twitter API. It may autonomously perform actions like **tweeting**, **retweeting**, **liking**, **following**, **unfollowing**, or **direct messaging** other users.
+
+-[Wikipedia](https://en.wikipedia.org/wiki/Twitter_bot)
+
+Link to bot or not
+
+---
+
+### Features & target Label
+
+### Model evaluation and results
+
+### Suggestions for future work
+
+---
 
 #### Tools, libraries, & technologies used
 
@@ -14,8 +32,6 @@
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 - HTML/CSS, [Bulma](https://bulma.io/)
 - [Heroku](https://www.heroku.com/)
-
----
 
 #### Sources & References
 
